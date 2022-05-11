@@ -3,6 +3,8 @@ import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import history from '@history';
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   '& .username, & .email': {
@@ -27,6 +29,13 @@ const StyledAppBar = styled(AppBar)(({ theme }) => ({
 
 function UserNavbarHeader(props) {
   const user = useSelector(({ auth }) => auth.user);
+  const [usuarioLogado, setUsuarioLogado] = useState();
+
+  useEffect(() => {
+    const usuario = JSON.parse(localStorage.getItem('usuarioLogadoGrowdev'));
+    if (!usuario) history.push('/login');
+    setUsuarioLogado(usuario);
+  }, []);
 
   return (
     <StyledAppBar
@@ -35,7 +44,7 @@ function UserNavbarHeader(props) {
       className="user relative flex flex-col items-center justify-center pt-24 pb-64 mb-32 z-0 shadow-0"
     >
       <Typography className="username text-18 whitespace-nowrap font-semibold mb-4" color="inherit">
-        {user.data.displayName}
+        {usuarioLogado?.nome}
       </Typography>
       <Typography
         className="email text-13 opacity-50 whitespace-nowrap font-medium"

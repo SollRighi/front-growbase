@@ -237,4 +237,9 @@ class Api extends FuseUtils.EventEmitter {
 
 const instance = new Api();
 
+
+export const apiSol = axios.create({
+  baseURL: 'https://fierce-fortress-03651.herokuapp.com'
+})
+
 export default instance;

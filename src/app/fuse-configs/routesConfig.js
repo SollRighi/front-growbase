@@ -5,6 +5,8 @@ import LoginConfig from 'app/main/login/LoginConfig';
 import ProductsConfig from 'app/main/products/ProductsConfig';
 import FuseLoading from '@fuse/core/FuseLoading';
 import Error404Page from 'app/main/404/Error404Page';
+import NovoRecado from 'app/main/recados';
+import TodosRecados from 'app/main/recados/TodosRecados';
 
 const routeConfigs = [ExampleConfig, ProductsConfig, LoginConfig];
 
@@ -13,6 +15,14 @@ const routes = [
   // ...FuseUtils.generateRoutesFromConfigs(routeConfigs, ['admin','staff','user']),
   // The individual route configs which has auth option won't be overridden.
   ...FuseUtils.generateRoutesFromConfigs(routeConfigs, null),
+  {
+    path: '/novo-recado',
+    element: <NovoRecado />,
+  },
+  {
+    path: '/todos-recados',
+    element: <TodosRecados />,
+  },
   {
     path: '/',
     element: <Navigate to="example" />,

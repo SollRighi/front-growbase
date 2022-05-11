@@ -6,7 +6,8 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import history from '@history';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { logoutUser } from 'app/auth/store/userSlice';
@@ -25,6 +26,13 @@ function UserMenu(props) {
   const userMenuClose = () => {
     setUserMenu(null);
   };
+  const [usuarioLogado, setUsuarioLogado] = useState();
+
+  useEffect(() => {
+    const usuario = JSON.parse(localStorage.getItem('usuarioLogadoGrowdev'));
+    if (!usuario) history.push('/login');
+    setUsuarioLogado(usuario);
+  }, []);
 
   return (
     <>
@@ -35,7 +43,7 @@ function UserMenu(props) {
       >
         <div className="hidden md:flex flex-col mx-4 items-end">
           <Typography component="span" className="font-semibold flex">
-            {user.data.displayName}
+            {usuarioLogado?.nome}
           </Typography>
           <Typography className="text-11 font-medium capitalize" color="textSecondary">
             {user.role.toString()}

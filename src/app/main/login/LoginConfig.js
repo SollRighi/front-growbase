@@ -2,6 +2,7 @@ import React from 'react';
 import { authRoles } from 'app/auth';
 
 const Login = React.lazy(() => import('./Login'));
+const NovaConta = React.lazy(() => import('./NovaConta'));
 
 const LoginConfig = {
   settings: {
@@ -38,6 +39,10 @@ const LoginConfig = {
     {
       path: '/login',
       element: <Login />,
+    },
+    {
+      path: '/nova-conta',
+      element: <NovaConta />,
     },
   ],
 };
