@@ -103,7 +103,7 @@
     },
     "scripts": {
         "dev": "craco start",
-        "build": "cross-env GENERATE_SOURCEMAP=false craco build",
+        "build": "DISABLE_ESLINT_PLUGIN=true craco build",
         "test": "craco test --env=node",
         "eject": "craco eject",
         "build-docs": "babel-node --presets @babel/preset-env src/app/main/documentation/material-ui-components/build.js",
